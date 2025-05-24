@@ -1,0 +1,37 @@
+
+<header>
+    <div class="container">
+        <mat-card>
+            <mat-card-title>Cadastrar</mat-card-title>
+            <mat-card-content>
+                <p>Você é aluno ou professor?</p>
+                <div class="btn-group">
+                    <button mat-raised-button color="primary" (click)="selecionarUsuario('Aluno')">Aluno</button>
+                    <button mat-raised-button color="accent" (click)="selecionarUsuario('Professor')">Professor</button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</header>
+
+<main>
+    <div *ngIf="tipoUsuario">
+        <mat-card>
+            <mat-card-title>Cadastro de {{ tipoUsuario }}</mat-card-title>
+            <mat-card-content>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nome</mat-label>
+                    <input matInput type="text">
+                </mat-form-field>
+                
+                <mat-form-field appearance="fill">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email">
+                </mat-form-field>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="fazerCadastro()">Cadastrar</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</main>

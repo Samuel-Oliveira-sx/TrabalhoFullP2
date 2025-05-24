@@ -1,0 +1,80 @@
+
+
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #fff;
+  font-family: 'Roboto', sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column; 
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 350px; 
+  height: auto;
+}
+
+mat-card {
+  width: 100%;
+  max-width: 350px; 
+  padding: 20px;
+  background-color: #333;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+mat-card-title {
+  color: #fff;
+  font-size: 1.6em;
+  margin-bottom: 15px;
+}
+
+mat-card-content p {
+  color: #bbb;
+  font-size: 1em;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+mat-card-actions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* Espaçamento maior entre os botões */
+}
+
+button.mat-raised-button {
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  min-width: 100px;
+}
+
+button.mat-raised-button[color="primary"] {
+  background-color: #1976d2;
+  color: #fff;
+}
+
+button.mat-raised-button[color="accent"] {
+  background-color: #ff4081;
+  color: #fff;
+}
+
+button.mat-raised-button:hover {
+  opacity: 0.85;
+}
