@@ -1,6 +1,4 @@
 
-
-
 body {
   display: flex;
   justify-content: center;
@@ -9,49 +7,69 @@ body {
   margin: 0;
   background-color: #fff;
   font-family: 'Roboto', sans-serif;
+  flex-direction: column; /* Ajuste para exibir a mensagem acima do formulário */
 }
 
+/* Estilização da mensagem de sucesso */
+.mensagem-sucesso {
+  font-size: 28px; /* Aumenta o tamanho do texto */
+  color: #28a745; /* Verde mais vibrante */
+  font-weight: bold; /* Negrito */
+  text-align: center; /* Centraliza */
+  margin-bottom: 20px; /* Espaçamento abaixo */
+  position: relative; /* Mudança para evitar que a mensagem sobreponha o formulário */
+  width: 100%; /* Garante que fique alinhado */
+}
+
+/* Estilização do container */
 .container {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
-  max-width: 350px; 
+  max-width: 350px;
   height: auto;
 }
 
+/* Estilização do Card */
 mat-card {
   width: 100%;
-  max-width: 350px; 
+  max-width: 350px;
   padding: 20px;
   background-color: #333;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  display: block !important; /* Garante que o card esteja visível */
 }
 
+/* Título do Card */
 mat-card-title {
   color: #fff;
   font-size: 1.6em;
   margin-bottom: 15px;
 }
 
+/* Texto do Card */
 mat-card-content p {
   color: #bbb;
   font-size: 1em;
 }
 
+/* Campos do formulário */
 mat-form-field {
   width: 100%;
   margin-bottom: 10px;
 }
 
+/* Área de ações do Card */
 mat-card-actions {
   display: flex;
   justify-content: center;
   gap: 15px;
 }
 
+/* Botões */
 .btn-group {
   display: flex;
   justify-content: center;
@@ -65,16 +83,19 @@ button.mat-raised-button {
   min-width: 100px;
 }
 
+/* Botão azul */
 button.mat-raised-button[color="primary"] {
   background-color: #1976d2;
   color: #fff;
 }
 
+/* Botão rosa */
 button.mat-raised-button[color="accent"] {
   background-color: #ff4081;
   color: #fff;
 }
 
+/* Efeito ao passar o mouse */
 button.mat-raised-button:hover {
   opacity: 0.85;
 }

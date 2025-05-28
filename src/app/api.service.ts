@@ -5,15 +5,27 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl ='https://localhost:7190/swagger/index.html'; 
+  private baseUrl = 'https://localhost:5103/api'; // Base da API
 
   constructor(private http: HttpClient) {}
 
-  getDados() {
-    return this.http.get(this.apiUrl);
+  // Cadastro de alunos
+  cadastrarAluno(aluno: any) {
+    return this.http.post(`${this.baseUrl}/aluno`, aluno);
   }
 
-  postDados(novoDado: any) {
-    return this.http.post(this.apiUrl, novoDado);
+  // Cadastro de professores
+  cadastrarProfessor(professor: any) {
+    return this.http.post(`${this.baseUrl}/professor`, professor);
+  }
+
+  // Login de alunos
+  loginAluno(loginData: any) {
+    return this.http.post(`${this.baseUrl}/aluno/login`, loginData);
+  }
+
+  // Login de professores
+  loginProfessor(loginData: any) {
+    return this.http.post(`${this.baseUrl}/professor/login`, loginData);
   }
 }

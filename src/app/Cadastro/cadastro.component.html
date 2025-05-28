@@ -1,33 +1,40 @@
 
-<header>
-    <div class="container">
-        <mat-card>
-            <mat-card-title>Cadastrar</mat-card-title>
-            <mat-card-content>
-                <p>Você é aluno ou professor?</p>
-                <div class="btn-group">
-                    <button mat-raised-button color="primary" (click)="selecionarUsuario('Aluno')">Aluno</button>
-                    <button mat-raised-button color="accent" (click)="selecionarUsuario('Professor')">Professor</button>
-                </div>
-            </mat-card-content>
-        </mat-card>
-    </div>
-</header>
-
 <main>
-    <div *ngIf="tipoUsuario">
+    <div>
         <mat-card>
+            <!-- Mensagem de sucesso dentro do card, acima do título -->
+            <div *ngIf="mensagemSucesso" class="mensagem-sucesso">
+                {{ mensagemSucesso }}
+            </div>
+
             <mat-card-title>Cadastro de {{ tipoUsuario }}</mat-card-title>
             <mat-card-content>
-                <mat-form-field appearance="fill">
-                    <mat-label>Nome</mat-label>
-                    <input matInput type="text">
-                </mat-form-field>
-                
-                <mat-form-field appearance="fill">
-                    <mat-label>Email</mat-label>
-                    <input matInput type="email">
-                </mat-form-field>
+                <form [formGroup]="cadastroForm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="nome">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Senha</mat-label>
+                        <input matInput type="password" formControlName="senha">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>CPF</mat-label>
+                        <input matInput formControlName="cpf">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Data de Nascimento</mat-label>
+                        <input matInput type="date" formControlName="dataNascimento">
+                    </mat-form-field>
+                </form>
             </mat-card-content>
             <mat-card-actions>
                 <button mat-raised-button color="primary" (click)="fazerCadastro()">Cadastrar</button>

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AlunoService {
-  private apiUrl = 'https://localhost:7190/swagger/index.html';
+  private apiUrl = 'https://localhost:5130/api/aluno/cadastro';
 
 
   constructor(private http: HttpClient) {}

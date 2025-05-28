@@ -1,68 +1,38 @@
 
-<div class="login-container">
-    <mat-card>
-        <mat-toolbar color="primary">
-            <span>Login</span>
-        </mat-toolbar>
-        <mat-card-content>
-            <mat-tab-group [(selectedIndex)]="abaSelecionada">
-                <mat-tab label="Aluno">
-                    <mat-card>
-                        <mat-toolbar color="primary">
-                            <span>Login de Aluno</span>
-                        </mat-toolbar>
-                        <mat-card-content>
-                            <form [formGroup]="loginForm">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Usuário</mat-label>
-                                    <input matInput formControlName="email" type="text" placeholder="Digite seu usuário">
-                                </mat-form-field>
+<header>
+    <div class="container">
+        <mat-card>
+            <mat-card-title>Login</mat-card-title>
+            <mat-card-content>
+                <p>Digite suas credenciais para acessar a plataforma.</p>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</header>
 
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Senha</mat-label>
-                                    <input matInput formControlName="password" type="password" placeholder="Digite sua senha">
-                                </mat-form-field>
-                            </form>
-                        </mat-card-content>
-                        
-                        <mat-card-actions>
-                            <button mat-raised-button color="primary" (click)="fazerLogin()">Entrar</button>
-                        </mat-card-actions>
-                    </mat-card>
-                </mat-tab>
+<main>
+    <div>
+        <mat-card>
+            <mat-card-title>Acesso ao Sistema</mat-card-title>
+            <mat-card-content>
+                <form [formGroup]="loginForm">
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email" placeholder="Digite seu e-mail">
+                    </mat-form-field>
 
-                <mat-tab label="Professor">
-                    <mat-card>
-                        <mat-toolbar color="accent">
-                            <span>Login de Professor</span>
-                        </mat-toolbar>
-                        <mat-card-content>
-                            <form [formGroup]="loginForm">
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Usuário</mat-label>
-                                    <input matInput formControlName="email" type="text" placeholder="Digite seu usuário">
-                                </mat-form-field>
-
-                                <mat-form-field appearance="fill">
-                                    <mat-label>Senha</mat-label>
-                                    <input matInput formControlName="password" type="password" placeholder="Digite sua senha">
-                                </mat-form-field>
-                            </form>
-                        </mat-card-content>
-                        
-                        <mat-card-actions>
-                            <button mat-raised-button color="primary" (click)="fazerLogin()">Entrar</button>
-                        </mat-card-actions>
-                         
-
-                    </mat-card>
-                </mat-tab>
-            </mat-tab-group>
-        </mat-card-content>
-                       <p class="cadastro-msg">
-                            Caso seja novo por aqui, <a mat-button color="accent" (click)="irParaCadastro()">faça seu <strong>cadastro</strong></a>.
-                        </p>
-
-    </mat-card>
-                      
-</div>
+                    <mat-form-field appearance="fill">
+                        <mat-label>Senha</mat-label>
+                        <input matInput type="password" formControlName="senha" placeholder="Digite sua senha">
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button color="primary" (click)="fazerLogin()">Entrar</button>
+            </mat-card-actions>
+            <p class="cadastro-msg">
+                Ainda não tem uma conta? <a mat-button color="accent" (click)="irParaCadastro()">Faça seu <strong>cadastro</strong></a>.
+            </p>
+        </mat-card>
+    </div>
+</main>
