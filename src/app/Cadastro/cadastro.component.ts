@@ -1,13 +1,13 @@
 
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importação necessária para *ngIf
+import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { HttpClientModule } from '@angular/common/http'; // Adicionado para suporte a requisições HTTP
+import { HttpClientModule } from '@angular/common/http';
 import { CadastroService } from '../services/cadastro.service';
 
 @Component({
@@ -21,28 +21,35 @@ import { CadastroService } from '../services/cadastro.service';
     MatInputModule,
     MatCheckboxModule,
     ReactiveFormsModule,
-    CommonModule // Adicionado para corrigir o erro do *ngIf
+    CommonModule
   ],
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
 export class CadastroComponent {
-  tipoUsuario: string = '';
-  mensagemSucesso: string = ''; // Variável para exibir mensagem de sucesso
+  tipoUsuario: string = ''; // Inicialmente vazio para garantir que o usuário escolha uma opção
+  mensagemSucesso: string = '';
 
-  cadastroForm = new FormGroup({
-    nome: new FormControl<string>('', Validators.required),
-    email: new FormControl<string>('', [Validators.required, Validators.email]),
-    senha: new FormControl<string>('', Validators.required),
-    cpf: new FormControl<string>('', Validators.required),
-    dataNascimento: new FormControl<string>('', Validators.required),
-    id: new FormControl<number>(0)
-  });
+  cadastroForm!: FormGroup;
 
   constructor(private cadastroService: CadastroService) {}
 
-  selecionarUsuario(tipo: string) {
+  criarFormulario(): FormGroup {
+    return new FormGroup({
+      nome: new FormControl<string>('', Validators.required),
+      email: new FormControl<string>('', [Validators.required, Validators.email]),
+      senha: new FormControl<string>('', Validators.required),
+      cpf: new FormControl<string>('', Validators.required),
+      dataNascimento: new FormControl<string>('', Validators.required),
+      id: new FormControl<number>(0),
+      tipoUsuario: new FormControl<string>('') // 🔹 Adicionado para evitar erros de tipagem
+    });
+  }
+
+  selecionarTipo(tipo: string) {
     this.tipoUsuario = tipo;
+    this.cadastroForm = this.criarFormulario(); // Recria o formulário corretamente ao mudar de tipo
+    this.cadastroForm.patchValue({ tipoUsuario: tipo }); // 🔹 Atualiza tipoUsuario no formulário
   }
 
   fazerCadastro() {
@@ -51,38 +58,31 @@ export class CadastroComponent {
       return;
     }
 
-    // Capturando os valores reais do formulário e garantindo que não sejam nulos
-    let aluno = {
+    let usuario = {
       nome: this.cadastroForm.value.nome ?? '',
       email: this.cadastroForm.value.email ?? '',
       senha: this.cadastroForm.value.senha ?? '',
       cpf: this.cadastroForm.value.cpf ?? '',
-      dataNascimento: this.cadastroForm.value.dataNascimento 
-        ? new Date(this.cadastroForm.value.dataNascimento).toISOString() 
+      dataNascimento: this.cadastroForm.value.dataNascimento
+        ? new Date(this.cadastroForm.value.dataNascimento).toISOString()
         : new Date().toISOString(),
-      id: this.cadastroForm.value.id ?? 0
+      id: this.cadastroForm.value.id ?? 0,
+      tipoUsuario: this.tipoUsuario // 🔹 Corrigido para garantir que `tipoUsuario` esteja presente
     };
 
-    console.log('Dados enviados:', aluno); // Adicionado para depuração
+    console.log(`Dados enviados para ${this.tipoUsuario}:`, usuario);
 
-    this.cadastroService.cadastrarUsuario(aluno).subscribe({
+    this.cadastroService.cadastrarUsuario(usuario).subscribe({
       next: (res) => {
-        console.log('Cadastro realizado com sucesso!', res);
-
-        // Exibir mensagem de sucesso
-        this.mensagemSucesso = 'Cadastro realizado!!';
-
-        // Resetar o formulário após o cadastro
+        console.log(`Cadastro de ${this.tipoUsuario} realizado com sucesso!`, res);
+        this.mensagemSucesso = `Cadastro de ${this.tipoUsuario} realizado com sucesso!`;
         this.cadastroForm.reset();
-
-        // Limpar a mensagem após alguns segundos
         setTimeout(() => {
           this.mensagemSucesso = '';
-        }, 3000); // Mensagem desaparece após 3 segundos
+        }, 3000);
       },
       error: (err) => {
-        console.error('Erro ao cadastrar:', err);
-        console.error('Detalhes do erro:', err.message);
+        console.error(`Erro ao cadastrar ${this.tipoUsuario}:`, err);
       }
     });
   }

@@ -6,7 +6,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { HttpClientModule } from '@angular/common/http'; // Adicionado para suporte a requisições HTTP
+import { MatTabsModule } from '@angular/material/tabs';
+import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Component({
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTabsModule,
     MatCheckboxModule,
     ReactiveFormsModule
   ],
@@ -25,21 +27,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
-    senha: new FormControl('', Validators.required)
-  });
+  selectedTabIndex = 0;
+  loginFormAluno!: FormGroup;
+  loginFormProfessor!: FormGroup;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    this.loginFormAluno = this.criarFormulario('Aluno');
+    this.loginFormProfessor = this.criarFormulario('Professor');
+  }
+
+  criarFormulario(tipo: string): FormGroup {
+    return new FormGroup({
+      email: new FormControl('', [Validators.required, Validators.email]),
+      senha: new FormControl('', Validators.required),
+      tipoUsuario: new FormControl(tipo)
+    });
+  }
 
   fazerLogin() {
-    if (this.loginForm.invalid) {
+    const loginAtivo = this.selectedTabIndex === 0 ? this.loginFormAluno : this.loginFormProfessor;
+
+    if (loginAtivo.invalid) {
       console.error('Preencha todos os campos corretamente!');
       return;
     }
 
-    console.log('Tentando login com:', this.loginForm.value);
-    // Aqui poderia ser feita uma chamada à API para autenticação do usuário
+    console.log(`Login como ${loginAtivo.value.tipoUsuario}:`, loginAtivo.value);
+
+    // Simulação de login bem-sucedido
+    setTimeout(() => {
+      console.log('Login efetuado com sucesso!');
+      this.router.navigate(['/home']); // 🔹 Redireciona para a página Home
+    }, 1000);
   }
 
   irParaCadastro() {

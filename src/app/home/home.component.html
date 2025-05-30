@@ -1,1 +1,78 @@
-<p>home works!</p>
+
+<mat-toolbar color="primary">
+  <img src="assets/imagens/AcademiaLogo.png" alt="Academia Logo" style="height: 115px;">
+  <span class="spacer"></span>
+  <mat-form-field appearance="outline">
+    <mat-label>Pesquisar...</mat-label>
+    <input matInput type="text">
+  </mat-form-field>
+  <button mat-icon-button (click)="irParaPerfil()">
+    <mat-icon>account_circle</mat-icon>
+  </button>
+</mat-toolbar>
+
+<section class="secao">
+  <h2 class="titulo-secao">Modalidades</h2>
+</section>
+
+<main>
+  <mat-card *ngFor="let modalidade of modalidades">
+    <mat-card-content>
+      <img mat-card-image [src]="'assets/imagens/' + modalidade.imagem" alt="{{ modalidade.nome }}" style="height: 220px; width: 250px;">
+      
+      <mat-card-title>
+        <p mat-button (click)="mostrarDescricao(modalidade)">{{ modalidade.nome }}</p>
+      </mat-card-title>
+      <mat-expansion-panel [expanded]="modalidade.exibirDescricao">
+        <mat-expansion-panel-header>
+          <span>Descrição</span>
+        </mat-expansion-panel-header>
+        <p>{{ modalidade.descricao }}</p>
+      </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
+</main>
+
+<section class="secao">
+  <h2 class="titulo-secao">Professores</h2>
+</section>
+
+<main>
+  <mat-card *ngFor="let professor of professores">
+    <mat-card-content>
+      <img mat-card-image [src]="'assets/imagens/' + professor.imagem" alt="{{ professor.nome }}" style="height: 260px; width: 200px;">
+      
+      <mat-card-title>
+        <p mat-button (click)="mostrarDescricao(professor)">{{ professor.nome }}</p>
+      </mat-card-title>
+      <mat-expansion-panel [expanded]="professor.exibirDescricao">
+        <mat-expansion-panel-header>
+          <span>Descrição</span>
+        </mat-expansion-panel-header>
+        <p>{{ professor.descricao }}</p>
+      </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
+</main>
+
+<section class="secao">
+  <h2 class="titulo-secao">Alimentação</h2>
+</section>
+
+<main>
+  <mat-card *ngFor="let alimento of alimentacao">
+    <mat-card-content>
+      <img mat-card-image [src]="'assets/imagens/' + alimento.imagem" alt="{{ alimento.nome }}" style="height: 250px; width: 200px;">
+      
+      <mat-card-title>
+        <p mat-button (click)="mostrarDescricao(alimento)">{{ alimento.nome }}</p>
+      </mat-card-title>
+      <mat-expansion-panel [expanded]="alimento.exibirDescricao">
+        <mat-expansion-panel-header>
+          <span>Descrição</span>
+        </mat-expansion-panel-header>
+        <p>{{ alimento.descricao }}</p>
+      </mat-expansion-panel>
+    </mat-card-content>
+  </mat-card>
+</main>

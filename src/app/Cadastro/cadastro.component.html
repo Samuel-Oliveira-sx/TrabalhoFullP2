@@ -7,9 +7,48 @@
                 {{ mensagemSucesso }}
             </div>
 
-            <mat-card-title>Cadastro de {{ tipoUsuario }}</mat-card-title>
+            <mat-card-title>Cadastro</mat-card-title>
+
             <mat-card-content>
-                <form [formGroup]="cadastroForm">
+                <p class="cadastro-msg">
+                    <a class="clicavel" [class.ativo]="tipoUsuario === 'Aluno'" (click)="selecionarTipo('Aluno')">Aluno</a> ou 
+                    <a class="clicavel" [class.ativo]="tipoUsuario === 'Professor'" (click)="selecionarTipo('Professor')">Professor</a>?
+                </p>
+
+                <!-- Formulário do Aluno -->
+                <form *ngIf="tipoUsuario === 'Aluno'" [formGroup]="cadastroForm">
+                    <h3>Cadastro de Aluno</h3>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Nome</mat-label>
+                        <input matInput formControlName="nome">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="email" formControlName="email">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Senha</mat-label>
+                        <input matInput type="password" formControlName="senha">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>CPF</mat-label>
+                        <input matInput formControlName="cpf">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill">
+                        <mat-label>Data de Nascimento</mat-label>
+                        <input matInput type="date" formControlName="dataNascimento">
+                    </mat-form-field>
+                </form>
+
+                <!-- Formulário do Professor -->
+                <form *ngIf="tipoUsuario === 'Professor'" [formGroup]="cadastroForm">
+                    <h3>Cadastro de Professor</h3>
+
                     <mat-form-field appearance="fill">
                         <mat-label>Nome</mat-label>
                         <input matInput formControlName="nome">
@@ -36,8 +75,9 @@
                     </mat-form-field>
                 </form>
             </mat-card-content>
+
             <mat-card-actions>
-                <button mat-raised-button color="primary" (click)="fazerCadastro()">Cadastrar</button>
+                <button mat-raised-button color="primary" (click)="fazerCadastro()">Cadastrar {{ tipoUsuario }}</button>
             </mat-card-actions>
         </mat-card>
     </div>

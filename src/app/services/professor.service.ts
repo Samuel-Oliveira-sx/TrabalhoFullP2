@@ -6,13 +6,12 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AlunoService {
-  private apiUrl = 'http://localhost:5130/api/aluno/cadastro';
-
+export class ProfessorService {
+  private apiUrl = 'http://localhost:5130/api/professor/cadastro';
 
   constructor(private http: HttpClient) {}
 
-  getAlunos(): Observable<any> {
+  getProfessores(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
 }

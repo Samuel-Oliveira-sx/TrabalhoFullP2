@@ -1,3 +1,82 @@
-p{
-    color: #fff;
+
+mat-toolbar{
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-around;
+  background-color: #f4f007;
+}
+
+mat-form-field {
+  width: 45%;
+  height: 55px;
+  color: #f9f9f961;
+  background-color: #6a6a6a56;
+}
+
+mat-label{
+
+  color: #f9f9f9;
+}
+
+
+.secao {
+  text-align: center;
+  background-color: #000;
+  padding: 16px;
+  margin-bottom: 16px; 
+}
+
+.titulo-secao {
+  color: #f9f9f9;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Estilização dos cartões */
+main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+  justify-content: center;
+}
+
+
+
+mat-card {
+  width: 300px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #282c3463;
+  color: rgb(207, 213, 31);
+}
+
+mat-card-image {
+  width: 100%;
+  height: auto;
+}
+
+
+mat-expansion-panel {
+  width: 100%;
+  background: #f9f9f91b;
+  color: #fffefe;
+  border-radius: 4px;
+}
+
+mat-expansion-panel-header {
+  justify-content: center;
+}
+
+mat-expansion-panel p {
+  margin: 0;
+  padding: 8px;
+  font-size: 14px;
+  color: #fffefe;
 }

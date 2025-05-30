@@ -7,8 +7,18 @@
   padding: 20px;
 }
 
-p{
+mat-tab{
 
+  color: #b9d219;
+
+}
+
+::ng-deep .mat-tab-label-active {
+  color: red !important; /* Altere para a cor desejada */
+}
+
+
+p {
   color: #fff;
 }
 
@@ -16,7 +26,12 @@ mat-card {
   padding: 20px;
   background-color: #333;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 8px rgba(228, 217, 217, 0.3);
+}
+
+mat-card-title{
+
+  color:#b9d219;
 }
 
 mat-form-field {
@@ -24,8 +39,12 @@ mat-form-field {
   margin-bottom: 15px;
 }
 
+
+
+
 mat-form-field input {
-  color: #fff;
+  color: #e2e2e2;
+
 }
 
 mat-card-actions {
@@ -37,13 +56,15 @@ mat-card-actions {
 button.mat-raised-button {
   width: 100%;
   padding: 12px;
+  color: #b9d219;
 }
 
 button.mat-raised-button[color="primary"] {
-  background-color: #1976d2;
-  color: #fff;
+  background-color: #000;
+  color: #b9d219;
 }
 
 button.mat-raised-button:hover {
   opacity: 0.85;
 }
+
